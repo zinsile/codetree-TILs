@@ -1,8 +1,8 @@
 import sys
 n = int(input())
 arr = input().split()
-max1 = -sys.maxsize
-max2 = -sys.maxsize
+max1 = -2**31
+max2 = -2**31
 
 for elem in arr:
     elem = int(elem)
