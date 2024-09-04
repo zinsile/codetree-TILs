@@ -1,9 +1,11 @@
+import sys
+
 n = int(input())
 arr = input().split()
-max1 = int(arr[0])
-max2 = int(arr[1])
+max1 = -sys.maxsize
+max2 = -sys.maxsize
 
-for elem in arr[2:]:
+for elem in arr:
     elem = int(elem)
     if elem > max1:
         max1 = elem
