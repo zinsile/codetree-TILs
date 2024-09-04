@@ -1,7 +1,7 @@
 n = int(input())
 arr = input().split()
-max1 = arr[0]
-max2 = arr[1]
+max1 = int(arr[0])
+max2 = int(arr[1])
 
 for elem in arr[2:]:
     elem = int(elem)
