@@ -4,10 +4,10 @@ exs = []
 maxs = -1
 for elem in arr[1:]:
     elem = int(elem)
-    elif elem in exs:
+    if elem in exs:
         elem.remove(elem)
         continue
-    if elem == maxs:
+    elif elem == maxs:
         maxs = -1
         continue
     elif elem > maxs:
