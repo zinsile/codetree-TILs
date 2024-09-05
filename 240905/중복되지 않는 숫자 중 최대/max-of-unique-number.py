@@ -10,6 +10,6 @@ for num in nums:
             if num2 == num:
                 count+=1
         if count == 1:
-            maxs = num
+            maxn = num
 
-print(maxs)
+print(maxn)
