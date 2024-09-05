@@ -7,5 +7,5 @@ for i in range(m1-1):
 for i in range(m2-1):
     day2 += months[i]
 
-result = (day2-day1)//7 + 1
-print(result)
+d = (day2-day1)%7
+print(d)
