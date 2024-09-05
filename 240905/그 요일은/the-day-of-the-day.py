@@ -1,14 +1,14 @@
 m1,d1,m2,d2 = map(int, input().split())
 day = input()
-day1 = 0
+day1 = 1
 
-if day == 'Mon': day = 0
-elif day == 'Tue': day = 1
-elif day == 'Wed': day = 2
-elif day == 'Thu': day = 3
-elif day == 'Fri': day = 4
-elif day == 'Sat': day = 5
-elif day == 'Sun': day = 6
+if day == 'Mon': day = 1
+elif day == 'Tue': day = 2
+elif day == 'Wed': day = 3
+elif day == 'Thu': day = 4
+elif day == 'Fri': day = 5
+elif day == 'Sat': day = 6
+elif day == 'Sun': day = 0
 
 
 months = [31,29,31,30,31,30,31,31,30,31,30,31]
