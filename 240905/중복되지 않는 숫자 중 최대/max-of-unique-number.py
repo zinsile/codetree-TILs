@@ -9,6 +9,7 @@ for elem in arr[1:]:
         continue
     elif elem > maxs:
         maxs = elem
+        continue
     elif elem in exs:
         elem.remove(elem)
         continue
