@@ -1,6 +1,6 @@
 n = int(input())
 arr = list(map(int, input().split()))
-maxs = -1
+maxs = 0
 gap = 0
 
 for i in range(n):
@@ -10,6 +10,5 @@ for i in range(n):
         if gap > maxs:
             maxs = gap
 
-if n == 1:
-    maxs = 0
+
 print(maxs)
