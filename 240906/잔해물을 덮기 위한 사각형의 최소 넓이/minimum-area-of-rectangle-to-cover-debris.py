@@ -25,8 +25,8 @@ for i in range(2000):
             maxx,maxy = i,j
 
 cnt=0
-for _ in range(minx+1000,maxx+1001):
-    for _ in range(miny+1000,maxy+1001):
+for _ in range(minx,maxx+1):
+    for _ in range(miny,maxy+1):
         cnt+=1
 
 print(cnt)
