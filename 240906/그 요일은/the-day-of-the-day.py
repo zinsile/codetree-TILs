@@ -23,7 +23,7 @@ day2 = (dn2-dn1)%7
 # 만약 day2-day1이 day보다 작으면 0
 # 만약 day가 day2보다 작으면 //7
 # 만약 day가 day2 같거나 크면 //7 +1
-if day2-day1 < day:
+if dn2-dn1 < day:
     result = 0
 elif day > day2 and day1 < day:
     result = (dn2-dn1)//7
