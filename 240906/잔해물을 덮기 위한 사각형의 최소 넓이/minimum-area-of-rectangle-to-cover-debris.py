@@ -19,19 +19,17 @@ for i in range(2000):
     for j in range(2000):
         if graph[i][j] != 1:
             continue
-        elif minx>=i:
-            minx = i
-        elif miny>=j:
-            miny = j
-        elif maxy<=j:
-            maxy = j
-        elif maxx<=i:
-            maxx = i
+        minx = min(minx,i)
+        miny = min(miny,j)
+        maxx = max(maxx,i)
+        maxy = max(maxy,j)
 
-cnt=0
-for _ in range(minx,maxx+1):
-    for _ in range(miny,maxy+1):
-        cnt+=1
+# cnt=0
+# for _ in range(minx,maxx+1):
+#     for _ in range(miny,maxy+1):
+#         cnt+=1
+
+cnt = (maxx-minx+1)*(maxy-miny+1)
 
 print(cnt)
 # print(minx,maxx,miny,maxy)
