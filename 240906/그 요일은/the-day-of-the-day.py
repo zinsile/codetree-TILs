@@ -25,8 +25,9 @@ day2 = (dn2-dn1)%7
 # 만약 day가 day2 같거나 크면 //7 +1
 if day2-day1 < day:
     result = 0
-elif day < day2:
-    result = (dn2-dn1)//6
-elif day >= day2:
-    result = (dn2-dn1)//6 + 1
+elif day > day2 and day1 < day:
+    result = (dn2-dn1)//7
+elif day <= day2 and day >= day1:
+    result = (dn2-dn1)//7 + 1
+
 print(result)
