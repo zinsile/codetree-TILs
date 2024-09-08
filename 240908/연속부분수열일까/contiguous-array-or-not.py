@@ -4,10 +4,10 @@ bline = list(map(int, input().split()))
 
 cnt = 0
 for i,a in enumerate(aline):
-    if a in bline:
-        cnt+=1
-    elif a in bline and cnt==n2:
+    if a in bline and cnt==n2:
         continue
+    elif a in bline:
+        cnt+=1
     else:
         if 0<cnt<n2:
             cnt = 0
