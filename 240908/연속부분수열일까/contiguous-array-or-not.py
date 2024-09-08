@@ -6,8 +6,6 @@ cnt = 0
 for i,a in enumerate(aline):
     if a in bline:
         cnt+=1
-    elif cnt == len(bline):
-        break
     elif a not in bline and cnt>0:
         cnt = 0
 
