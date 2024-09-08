@@ -9,7 +9,7 @@ for i,a in enumerate(aline):
     elif a in bline:
         cnt+=1
     else:
-        if 0<cnt<n2:
+        if 0<cnt:
             cnt = 0
 
 
