@@ -9,8 +9,8 @@ for i,a in enumerate(aline):
     elif cnt == len(bline):
         break
     elif a not in bline and cnt>0:
-        print("No")
         cnt = 0
 
 if cnt == len(bline):
     print("Yes")
+else:print("No")
