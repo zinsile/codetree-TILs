@@ -6,6 +6,8 @@ cnt = 0
 for i,a in enumerate(aline):
     if a in bline and cnt==n2:
         continue
+    elif cnt==n2:
+        break
     elif a in bline:
         cnt+=1
     else:
