@@ -15,6 +15,7 @@ for t,(x1,y1,x2,y2) in enumerate(info):
 minx,miny = 2000,2000
 maxx,maxy = 0,0
 
+temp = False
 for i in range(2000):
     for j in range(2000):
         if graph[i][j] != 1:
@@ -23,6 +24,7 @@ for i in range(2000):
         miny = min(miny,j)
         maxx = max(maxx,i)
         maxy = max(maxy,j)
+        temp = True
 
 # cnt=0
 # for _ in range(minx,maxx+1):
@@ -31,5 +33,7 @@ for i in range(2000):
 
 cnt = (maxx-minx+1)*(maxy-miny+1)
 
-print(cnt)
-# print(minx,maxx,miny,maxy)
+if temp:
+    print(cnt)
+else:
+    print(0)
