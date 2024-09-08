@@ -7,6 +7,6 @@ while True:
     bls.append(n%b)
     n //= b
 if bls[-1] == 0:
-    bls = bls[1:]
+    bls = bls[:len(bls)-1]
 for i in bls[::-1]:
     print(i,end='')
