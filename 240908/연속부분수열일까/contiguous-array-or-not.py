@@ -6,11 +6,12 @@ cnt = 0
 for i,a in enumerate(aline):
     if a in bline:
         cnt+=1
+    elif a in bline and cnt==n2:
+        continue
     else:
         if 0<cnt<n2:
             cnt = 0
-        elif cnt == n2:
-            continue
+
 
 if cnt == len(bline):
     print("Yes")
