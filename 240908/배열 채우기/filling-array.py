@@ -1,5 +1,8 @@
 arr = list(map(int, input().split()))
-for i in arr[::-1]:
-    if i == 0:
-        continue
+index = len(arr)
+for i,elem in enumerate(arr):
+    if elem == 0:
+        index = i-1
+        break
+for i in arr[index::-1]:
     print(i,end=' ')
