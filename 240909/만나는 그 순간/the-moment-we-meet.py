@@ -2,8 +2,8 @@ n,m = map(int, input().split())
 a_comm = [list(map(str, input().split())) for _ in range(n)]
 b_comm = [list(map(str, input().split())) for _ in range(m)]
 
-a_pos = [0]*1000
-b_pos = [0]*1000
+a_pos = [0]*1000**2
+b_pos = [0]*1000**2
 dis,p = 0,0
 for d,t in a_comm:
     t = int(t)
@@ -27,7 +27,7 @@ for d,t in b_comm:
             b_pos[p+i+1] = dis
     p = p+t
 
-for i in range(1,1001):
+for i in range(1,10**6+1):
     if i<=p and a_pos[i] == b_pos[i]:
         print(i)
         break
