@@ -1,36 +1,34 @@
+MAX_T = 10**6
 n,m = map(int, input().split())
-a_moving = [list(map(int, input().split())) for _ in range(n)]
-b_moving = [list(map(int, input().split())) for _ in range(m)]
-a_pos,b_pos = [0]*(10**6+1),[0]*(10**6+1)
+time_a, time_b = [0]*(MAX_T+1), [0]*(MAX_T+1)
+pos_a,pos_b = 1,1
 
-ap,h = 0,0
-for v,t in a_moving:
+for _ in range(n):
+    v,t = map(int, input().split())
     for i in range(t):
-        for j in range(v):
-            a_pos[ap+j+1] = h+i+1
-        ap = ap+v
-    h = h+t
+        time_a[pos_a] = time_a[pos_a-1]+v
+        pos_a += 1
 
-bp,h = 0,0
-for v,t in b_moving:
+for _ in range(m):
+    v,t = map(int, input().split())
     for i in range(t):
-        for j in range(v):
-            b_pos[bp+j+1] = h+i+1
-        bp = bp+v
-    h = h+t
+        time_b[pos_b] = time_b[pos_b-1]+v
+        pos_b += 1
 
-first_runner = 'N'
+leader = 0 #1:a선두,2:b선두
 cnt = 0
-for i in range(1,10**6+1):
-    if i > min(ap,bp):
-        break
-    elif a_pos[i] == b_pos[i]:
+for i in range(pos_a+1):
+    if time_a[i] == time_b[i]:
         continue
-    elif a_pos[i]<b_pos[i] and (first_runner=='b'or first_runner=='N'):
-        cnt+=1
-        first_runner = 'a'
-    elif a_pos[i]>b_pos[i] and (first_runner=='a'or first_runner=='N'):
-        cnt += 1
-        first_runner = 'b'
-    # print(first_runner)
-print(cnt-1)
+    elif time_a[i]>time_b[i]:
+        if leader == 2:
+            cnt += 1
+            leader = 1
+        else: leader = 1
+    elif time_a[i]<time_b[i]:
+        if leader == 1:
+            cnt +=1
+            leader=2
+        else: leader=2
+
+print(cnt)
