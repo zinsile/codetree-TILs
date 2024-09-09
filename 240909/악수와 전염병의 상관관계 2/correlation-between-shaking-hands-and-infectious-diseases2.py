@@ -6,7 +6,10 @@ hand_shake.sort()
 sick[p] = 1
 
 for t,x,y in hand_shake:
-    if infecting_cnt[x]<k and sick[x]==1:
+    if sick[x]==1 and sick[y]==1:
+        infecting_cnt[x] += 1
+        infecting_cnt[y] += 1
+    elif infecting_cnt[x]<k and sick[x]==1:
         sick[x],sick[y] = 1,1
         infecting_cnt[x] += 1
     elif infecting_cnt[y]<k and sick[y]==1:
