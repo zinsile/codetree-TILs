@@ -21,10 +21,12 @@ for _ in range(m):
         if d=='L':
             pos_b[present_b] = pos_b[present_b-1] -1
             present_b += 1
+
         else:
             pos_b[present_b] = pos_b[present_b-1] +1
             present_b += 1
 
+present_a,present_b = present_a-1, present_b-1
 #먼저 끝난 로봇은 다른 로봇이 끝나기 전까지 같은 위치로 설정
 for i in range(abs(present_a-present_b)):
     if present_a>present_b:
