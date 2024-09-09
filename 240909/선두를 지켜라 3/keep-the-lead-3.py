@@ -1,5 +1,5 @@
 n,m = map(int, input().split())
-pos_a,pos_b = [0]*(10**3+1), [0]*(10**3+1)
+pos_a,pos_b = [0]*(10**6+1), [0]*(10**6+1)
 time_a,time_b = 1,1
 
 for _ in range(n):
