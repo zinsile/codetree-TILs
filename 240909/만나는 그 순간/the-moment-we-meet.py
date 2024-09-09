@@ -28,6 +28,9 @@ for d,t in b_comm:
     p = p+t
 
 for i in range(1,1001):
-    if a_pos[i] == b_pos[i]:
+    if i<=p and a_pos[i] == b_pos[i]:
         print(i)
+        break
+    elif i>p:
+        print(-1)
         break
