@@ -1,7 +1,7 @@
 n,m = map(int, input().split())
 a_moving = [list(map(int, input().split())) for _ in range(n)]
 b_moving = [list(map(int, input().split())) for _ in range(m)]
-a_pos,b_pos = [0]*10**6,[0]*10**6
+a_pos,b_pos = [0]*(10**6+1),[0]*(10**6+1)
 
 ap,h = 0,0
 for v,t in a_moving:
@@ -21,7 +21,7 @@ for v,t in b_moving:
 
 first_runner = 'N'
 cnt = 0
-for i in range(1,10**6):
+for i in range(1,10**6+1):
     if i > min(ap,bp):
         break
     elif a_pos[i] == b_pos[i]:
