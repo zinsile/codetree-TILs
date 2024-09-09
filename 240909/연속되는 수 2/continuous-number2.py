@@ -1,19 +1,21 @@
+# 변수 선언 및 입력
 n = int(input())
-cnt = 1
-max_cnt = -1
-x_num = -1
-for i in range(n):
-    num = int(input())
-    if i == 0:
-        max_cnt = max(max_cnt,cnt)
-        x_num = num
-        continue
-    elif x_num == num:
-        cnt += 1
-        max_cnt = max(max_cnt,cnt)
-        x_num = num
-    elif x_num !=num:
-        cnt = 1
-        x_num = num
+arr = [
+	int(input())
+	for _ in range(n)
+]
 
-print(max_cnt)
+# 연속하여 동일한 숫자가 나오는 횟수를 구해보며,
+# 그 중 최댓값을 갱신합니다.
+ans, cnt = 0, 0
+for i in range(n):
+	# Case 1
+	if i >= 1 and arr[i] == arr[i - 1]:
+		cnt += 1
+	# Case 2
+	else:
+		cnt = 1
+	
+	ans = max(ans, cnt)
+
+print(ans)
