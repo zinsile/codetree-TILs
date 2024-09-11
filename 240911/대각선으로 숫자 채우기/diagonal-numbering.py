@@ -14,12 +14,14 @@ for j in range(m):
 
 for j in range(1,n):
     t = j
+    k = n-1
     for i in range(0,j+1):
         if t==n:
             continue
-        graph[t][n-1-i] = num
+        graph[t][k] = num
         num+=1
         t+=1
+        k-=1
 
 for raw in graph:
     for elem in raw:
