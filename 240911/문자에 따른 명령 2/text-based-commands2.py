@@ -8,7 +8,7 @@ for t in arr:
         x,y = x+dx[dic_num], y+dy[dic_num]
     elif t=="L":
         dic_num = (dic_num-1+4)%4
-    else:
+    elif t=="R":
         dic_num = (dir_num+1)%4
 
 print(x,y,end=' ')
