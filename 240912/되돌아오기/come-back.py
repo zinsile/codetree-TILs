@@ -10,7 +10,7 @@ for _ in range(n):
     dir_num = mapper[d]
     for _ in range(int(t)):
         x,y = x+dxs[dir_num], y+dys[dir_num]
-        if x==0 and y==0:
+        if x==0 and y==0 and not end:
             print(time)
             end = True
             break
