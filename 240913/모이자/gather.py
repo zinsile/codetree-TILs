@@ -1,14 +1,16 @@
 import sys
-INT_MIN = sys.maxsize
+INT_MAX = sys.maxsize
+
 n = int(input())
-fams = list(map(int, input().split()))
+arr = list(map(int, input().split()))
+
+min_dist = INT_MAX
 
 for i in range(n):
-    dis = 0
-    for j in range(i):
-        dis += fams[j]*(i-j)
-    for k in range(n-i):
-        dis += fams[i+k]*k
-    INT_MIN = min(dis,INT_MIN)
+    sum_dist = 0
+    for j in range(n):
+        sum_dist += abs(j-i) * arr[j]
+    
+    min_dist = min(min_dist, sum_dist)
 
-print(INT_MIN)
+print(min_dist)
