@@ -1,7 +1,9 @@
 from collections import deque
+import sys
+
 n = int(input())
 people = deque(int(input()) for _ in range(n))
-min_dis = 10**6
+min_dis = sys.maxsize
 
 for _ in range(n):
     d = 0
