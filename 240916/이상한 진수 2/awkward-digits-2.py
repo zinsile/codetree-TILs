@@ -13,4 +13,6 @@ for idx, i in enumerate(bina):
     n = max(n, bina_cal(bina))
     bina[idx] = bina[idx] ^ 1
 
-print(n)
+if len(bina)==1 and bina[0]==1:
+    print(0)
+else: print(n)
