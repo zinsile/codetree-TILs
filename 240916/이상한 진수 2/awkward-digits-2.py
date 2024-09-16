@@ -5,8 +5,7 @@ def bina_cal(bina:list):
     for i in range(len(bina)):
         n += bina[len(bina)-1-i]*(2**i)
     return n
-
-n = bina_cal(bina)
+n = 0
 
 for idx, i in enumerate(bina):
     bina[idx] = i ^ 1
