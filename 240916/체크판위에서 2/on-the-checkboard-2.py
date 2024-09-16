@@ -9,4 +9,6 @@ for i in range(1,r-1):
                 if graph[i][j]!=graph[0][0] and graph[k][l]!=graph[r-1][c-1]:
                     cnt+=1
 
-print(cnt)
+if graph[0][0] == graph[r-1][c-1]:
+    print(0)
+else:print(cnt)
