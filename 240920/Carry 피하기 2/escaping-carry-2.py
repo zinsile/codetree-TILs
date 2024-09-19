@@ -12,7 +12,7 @@ def carry(x,y,z):
         sumlist[idx] += int(i)
     temp = False
     for s in sumlist:
-        if s>10:
+        if s>=10:
             temp = True
     if not temp:
         return (x+y+z)
