@@ -16,9 +16,9 @@ def carry(x,y,z):
             temp = True
     if not temp:
         return (x+y+z)
-    else: return (0)
+    else: return (-1)
     
-maxres = 0
+maxres = -1
 for i in range(n):
     for j in range(i+1,n):
         for k in range(j+1,n):
