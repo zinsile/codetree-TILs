@@ -15,7 +15,7 @@ for i in range(19):
             winner = graph[i][j]
             x,y = i+1,j+3
             t = True
-        else: cnt = 1
+        cnt = 1
         #세로
         if not t:
             for k in range(1,5):
@@ -25,7 +25,7 @@ for i in range(19):
                 winner = graph[i][j]
                 x,y = i+3,j+1
                 t = True
-            else: cnt = 1
+        cnt = 1
         #왼대각선
         if not t:
             for k in range(1,5):
@@ -35,15 +35,15 @@ for i in range(19):
                 winner = graph[i][j]
                 x,y = i+3,j+3
                 t = True
-            else: cnt = 1
+        cnt = 1
         #오대각선
         if not t:
             for k in range(1,5):
-                if i-k>=0 and j-k>=0 and graph[i][j] == graph[i-k][j-k]:
+                if i+k<19 and j-k>=0 and graph[i][j] == graph[i+k][j-k]:
                     cnt += 1
             if cnt == 5:
                 winner = graph[i][j]
-                x,y = i-1,j-1
+                x,y = i+3,j-1
                 t = True
 print(winner)
 print(x,y,end=' ')
