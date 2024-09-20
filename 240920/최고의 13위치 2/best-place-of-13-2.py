@@ -14,6 +14,8 @@ for i in range(n):
                     l = l+(j+3-l)
                 if not in_range(l+1,l+2):
                     continue
+                if i==k and l+2>=k:
+                    continue
                 curmax = max(curmax, arr[i][j]+arr[i][j+1]+arr[i][j+2]+arr[k][l]+arr[k][l+1]+arr[k][l+2])
 
 print(curmax)
