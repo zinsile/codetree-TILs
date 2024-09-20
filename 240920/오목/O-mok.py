@@ -45,5 +45,8 @@ for i in range(19):
                 winner = graph[i][j]
                 x,y = i+3,j-1
                 t = True
-print(winner)
-print(x,y,end=' ')
+if winner == 0:
+    print(0)
+else:
+    print(winner)
+    print(x,y,end=' ')
