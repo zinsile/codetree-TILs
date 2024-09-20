@@ -9,7 +9,7 @@ for i in range(19):
         cnt = 1
         #가로
         for k in range(1,5):
-            if graph[i][j] == graph[i][j+k]:
+            if j+k<19 and graph[i][j] == graph[i][j+k]:
                 cnt += 1
         if cnt == 5:
             winner = graph[i][j]
@@ -19,7 +19,7 @@ for i in range(19):
         #세로
         if not t:
             for k in range(1,5):
-                if graph[i][j] == graph[i+k][j]:
+                if i+k<19 and graph[i][j] == graph[i+k][j]:
                     cnt += 1
             if cnt == 5:
                 winner = graph[i][j]
