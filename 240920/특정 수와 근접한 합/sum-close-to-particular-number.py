@@ -6,7 +6,7 @@ arr = list(map(int, input().split()))
 curmin = sys.maxsize
 
 for i in range(n):
-    for j in range(i,n):
+    for j in range(i+1,n):
         add = sum(arr)-arr[i]-arr[j]
         curmin = min(curmin, abs(s-add))
 
