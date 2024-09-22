@@ -1,12 +1,12 @@
-n,m = map(int,input().split())
-a = list(map(int, input().split()))
-b = list(map(int, input().split()))
-b.sort()
+# 변수 선언 및 입력
+n, m = tuple(map(int, input().split()))
+arr1 = list(map(int, input().split()))
+arr2 = list(map(int, input().split()))
 
+# 모든 구간의 시작점을 잡아봅니다.
 cnt = 0
-for i in range(n-m+1):
-    sub_a = a[i:i+m]
-    sub_a.sort()
-    if sub_a == b:
-        cnt += 1
+for i in range(0, n - m + 1):
+	if sorted(arr1[i:i+m]) == sorted(arr2):
+		cnt += 1
+
 print(cnt)
