@@ -5,6 +5,6 @@ for _ in range(n):
     arr[p] += t
 
 maxcan = 0
-for i in range(k+1,101-k+1):
+for i in range(k+1,102):
     maxcan = max(maxcan,sum(arr[i-k:i+k+1]))
 print(maxcan)
