@@ -2,7 +2,7 @@ MAX_NUM = 1000
 
 arr = list(map(int, input().split()))
 
-min_power = MAX_NUM*2
+min_power = MAX_NUM*2+1
 
 for i in range(5):
     for j in range(5):
@@ -17,4 +17,6 @@ for i in range(5):
             maxt = max(t1,t2,t3)
             mint = min(t1,t2,t3)
             min_power = min(min_power, maxt-mint)
-print(min_power)
+if min_power == MAX_NUM*2+1:
+    print(-1)
+else: print(min_power)
