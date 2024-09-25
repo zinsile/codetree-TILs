@@ -11,7 +11,7 @@ for i1 in range(n):
             if (x1==x2 or x2==x3) and (y1==y2 or y2==y3):
                 max_x,max_y = max(x1,x2,x3), max(y1,y2,y3)
                 min_x,min_y = min(x1,x2,x3), min(y1,y2,y3)
-                t = (max_x-min_x) * (max_y-min_y)
+                t = (abs(max_x)-abs(min_x)) * (abs(max_y)-abs(min_y))
             else:
                 t = 0
             s = max(s, t)
