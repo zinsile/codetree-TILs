@@ -1,23 +1,30 @@
+# 변수 선언 및 입력
 n = int(input())
-arr = [list(map(int, input().split())) for _ in range(n)]
+x = [
+    tuple(map(int, input().split()))
+    for _ in range(n)
+]
 
-#x1작은데 x2더 크거나
-#x1더큰데 x2더 작거나
+ans = 0
 
-result = 0
+
+# 다른 선분과 겹치지 않는 선분의 수를 구합니다.
 for i in range(n):
-    x1,x2 = arr[i]
-    cnt = 0
-    for j in range(n):
-        if i==j:
-            continue
-        a1,a2 = arr[j]
-        if x1<a1 and x2>a2:
-            continue
-        if x1>a1 and x2<a2:
-            continue
-        cnt += 1
-    if cnt == n-1:
-        result += 1
+	# i번째 선분이 다른 선분과 겹치지 않는지 확인합니다.
+	overlap = False
+	
+	for j in range(n):
+		# 자기 자신은 제외합니다.
+		if j == i:
+			continue
+		
+		# x1이 큰 쪽이 x2가 더 작다면 겹치게 됩니다.
+		if (x[i][0] <= x[j][0] and x[i][1] >= x[j][1]) or (x[i][0] >= x[j][0] and x[i][1] <= x[j][1]):
+			overlap = True
+			break
+	
+    # 겹치지 않았다면 정답의 개수에 하나를 추가합니다.
+	if overlap == False:
+		ans += 1
 
-print(result)
+print(ans)
