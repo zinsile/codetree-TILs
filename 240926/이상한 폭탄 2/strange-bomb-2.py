@@ -5,6 +5,5 @@ t = 0
 for i in range(n):
     for j in range(i+1,n):
         if arr[i] == arr[j] and j-i<=k:
-            for k in range(i,j+1):
-                t = max(t,arr[k])
+            t = max(t,arr[i])
 print(t)
