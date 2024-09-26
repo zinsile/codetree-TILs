@@ -20,10 +20,10 @@ for i,c in enumerate(cheese):
 
 max_people = 0
 for d in damage_cheese:
-    people = 0
+    people = [0]*(n+1)
     for p,m,t in eating:
-        if d==m:
-            people+=1
-    max_people = max(max_people, people)
+        if d==m and people[p] == 0:
+            people[p] = 1
+    max_people = max(max_people, sum(people))
 
 print(max_people)
