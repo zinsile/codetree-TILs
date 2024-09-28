@@ -7,7 +7,7 @@ for i in range(n):
     price, people = 0, 0
     for j in sorted(arr):
         price += j
-        if price<b:
+        if price<=b:
             people += 1
     max_people = max(max_people, people)
     arr[i] = arr[i]*2
