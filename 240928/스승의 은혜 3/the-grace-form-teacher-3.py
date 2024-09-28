@@ -5,7 +5,7 @@ max_student = 0
 for i in range(n):
     tmp = [arr[j] for j in range(n)]
     tmp[i][0] = tmp[i][0]/2
-    tmp = [a+b for a,b, in tmp]
+    tmp = [a+b for a,b in tmp]
     price = 0
     student = 0
     for p in sorted(tmp):
