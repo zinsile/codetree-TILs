@@ -2,7 +2,7 @@ n,c,g,h = map(int, input().split())
 arr = [list(map(int, input().split())) for _ in range(n)]
 
 max_n = 0
-for i in range(1,22):
+for i in range(-1,1001):
     num = 0
     for ta,tb in arr:
         if i < ta:
