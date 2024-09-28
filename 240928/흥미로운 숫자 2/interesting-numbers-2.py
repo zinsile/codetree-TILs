@@ -15,7 +15,6 @@ for i in range(x,y+1):
             if tmp[t] == 1 or tmp[t] == len(arr)-1:
                 r = True
     if r:
-        print(i)
         cnt+=1
 
 print(cnt)
