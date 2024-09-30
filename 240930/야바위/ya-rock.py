@@ -9,4 +9,4 @@ for i in range(1,4):
         tmp[a],tmp[b] = tmp[b],tmp[a]
         if tmp[c] == 1:
             score[i] += 1
-print(score.index(max(score)))
+print(max(score))
