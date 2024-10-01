@@ -7,12 +7,12 @@ for i in range(n):# 가로
     cnt = 0
     max_cnt = 0
     for j in range(n):
-        max_cnt = max(max_cnt,cnt)
         if prev == graph[i][j]:
             cnt += 1
         if prev != graph[i][j]:
             prev = graph[i][j]
             cnt = 1
+        max_cnt = max(max_cnt,cnt)
     if max_cnt >= m:
         result += 1
     
@@ -20,12 +20,12 @@ for i in range(n):# 가로
     cnt = 0
     max_cnt= 0
     for j in range(n):
-        max_cnt = max(max_cnt,cnt)
         if prev == graph[j][i]:
             cnt += 1
         if prev != graph[j][i]:
             prev = graph[j][i]
             cnt = 1
+        max_cnt = max(max_cnt,cnt)
     if max_cnt >= m:
         result += 1
 
