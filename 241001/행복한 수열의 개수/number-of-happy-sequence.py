@@ -1,32 +1,33 @@
 n, m = map(int, input().split())
 graph = [list(map(int, input().split())) for _ in range(n)]
+seq = [0]*n
 
-result = 0
-for i in range(n):# 가로
-    prev = graph[i][0]
-    cnt = 0
-    max_cnt = 0
-    for j in range(n):
-        if prev == graph[i][j]:
+def is_happy_sequence():
+    cnt, max_cnt = 1, 1
+    for i in range(1,n):
+        if seq[i-1] == seq[i]:
             cnt += 1
-        if prev != graph[i][j]:
-            prev = graph[i][j]
+        else:
             cnt = 1
-        max_cnt = max(max_cnt,cnt)
-    if max_cnt >= m:
-        result += 1
+        
+        max_cnt = max(max_cnt, cnt)
     
-    prev = graph[0][i]
-    cnt = 0
-    max_cnt= 0
-    for j in range(n):
-        if prev == graph[j][i]:
-            cnt += 1
-        if prev != graph[j][i]:
-            prev = graph[j][i]
-            cnt = 1
-        max_cnt = max(max_cnt,cnt)
-    if max_cnt >= m:
-        result += 1
+    return max_cnt >= m
 
-print(result)
+num_happy = 0
+
+#가로
+for i in range(n):
+    seq = graph[i][:]
+
+    if is_happy_sequence():     ## if is_happy_sequence  vs  if is_happy_sequence()는 결과가 달라짐!
+        num_happy += 1
+
+#세로
+for i in range(n):
+    for j in range(n):
+        seq[j] = graph[j][i]
+    if is_happy_sequence():
+        num_happy += 1
+
+print(num_happy)
