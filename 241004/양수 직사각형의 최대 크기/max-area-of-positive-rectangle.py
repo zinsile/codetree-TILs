@@ -20,4 +20,6 @@ for i in range(n):
             for h in range(m):
                 ans = max(ans, checking_subarea(i,j,w,h))
 
-print(ans)
+if ans==0:
+    print(-1)
+else: print(ans)
