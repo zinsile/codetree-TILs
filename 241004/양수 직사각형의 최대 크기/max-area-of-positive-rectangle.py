@@ -4,22 +4,19 @@ graph = [list(map(int, input().split())) for _ in range(n)]
 def in_range(x,y):
     return x>=0 and x<n and y>=0 and y<m 
 
-def checking_subarea(x,y,w,h):
-    if not in_range(x+w,y+h):
-        return 0
-    for i in range(x,x+w+1):
-        for j in range(y,y+h+1):
-            if graph[i][j]<=0:
-                return 0
-    return (w+1)*(h+1)
+def checking_subarea(x1,y1,x2,y2):
+    return all([
+        graph[i][j]>0
+        for i in range(x1,x2+1)
+        for j in range(y1,y2+1)
+    ])
 
-ans = 0
+ans = -1
 for i in range(n):
     for j in range(m):
-        for w in range(n):
-            for h in range(m):
-                ans = max(ans, checking_subarea(i,j,w,h))
+        for k in range(i,n):
+            for l in range(j,m):
+                if checking_subarea:
+                    ans = max(ans, (k-i+1)*(l-j+1))
 
-if ans==0:
-    print(-1)
-else: print(ans)
+print(ans)
