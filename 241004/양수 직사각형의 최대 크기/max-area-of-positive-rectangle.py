@@ -16,7 +16,7 @@ for i in range(n):
     for j in range(m):
         for k in range(i,n):
             for l in range(j,m):
-                if checking_subarea:
+                if checking_subarea(i,j,k,l):
                     ans = max(ans, (k-i+1)*(l-j+1))
 
 print(ans)
