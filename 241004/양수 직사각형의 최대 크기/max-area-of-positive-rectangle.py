@@ -9,7 +9,7 @@ def checking_subarea(x,y,w,h):
         return 0
     for i in range(x,x+w+1):
         for j in range(y,y+h+1):
-            if graph[i][j]<0:
+            if graph[i][j]<=0:
                 return 0
     return (w+1)*(h+1)
 
