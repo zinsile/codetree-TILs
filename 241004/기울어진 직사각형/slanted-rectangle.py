@@ -33,8 +33,8 @@ def square(i, j):
     max_score = 0
     for k in range(2,n+1):
         for w in range(1,n):
-            h = k-w
-            if h==0:
+            h = k-w+1
+            if w>=k:
                 continue
             H,W= 0,0
             if h==1:
