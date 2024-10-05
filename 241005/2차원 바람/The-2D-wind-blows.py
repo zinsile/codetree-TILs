@@ -26,7 +26,7 @@ def rotation(start_x,start_y,end_x,end_y):
     for i in range(end_x,start_x,-1):
         a[i][end_y] = a[i-1][end_y]
     # 1.5 위에 모서리열 오른쪽으로 shift
-    for i in range(end_y,start_y+1,-1):
+    for i in range(end_y,start_y,-1):
         a[start_x][i] = a[start_x][i-1]
     # 1.6 왼쪽 상단 모서리 오른쪽 a값에 temp 넣기
     a[start_x][start_y+1] = temp
