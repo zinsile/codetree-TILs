@@ -1,6 +1,6 @@
 n = int(input())
 arr = [0]*(n+1)
-for i in range(n,0,-1):
+for i in range(1,n+1):
     arr[i] = int(input())
 
 def block_delete(s,e):
@@ -18,6 +18,6 @@ for _ in range(2):
     arr = block_delete(s,e)
 
 print(len(arr)-1)
-for t in arr[::-1]:
+for t in arr:
     if t != 0:
         print(t)
