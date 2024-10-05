@@ -17,7 +17,7 @@ def rotation(start_x,start_y,end_x,end_y):
     # 1.1 왼쪽 상단 모서리 temp값에 저장
     temp = a[start_x][start_y]
     # 1.2 왼쪽 모서리 열 위로 shift
-    for i in range(start_y,end_x):
+    for i in range(start_x,end_x):
         a[i][start_y] = a[i+1][start_y]
     # 1.3 아래 모서리 열 왼쪽으로 shift
     for i in range(start_y,end_y):
@@ -37,18 +37,18 @@ def in_range(x,y):
 def average(x,y):
     dxs, dys = [0, 1, -1, 0, 0], [0, 0, 0, 1, -1]
     avg_list = [
-                a[x+dx][y+dy]
-                for dx,dy in zip(dxs, dys)
-                if in_range(x+dx,y+dy)
-                ]
+        a[x+dx][y+dy]
+        for dx,dy in zip(dxs, dys)
+        if in_range(x+dx,y+dy)
+    ]
     return sum(avg_list)//len(avg_list)
 
 def set_average(start_x,start_y,end_x,end_y):
-    dxs, dys = [0,1,-1,0,0], [0,0,0,1,-1]
     # 2.1 a에서 평균 구해서 temp_a 에 평균 저장(자기자신,상,하,좌,우 범위 안에 있는지 확인)
     for i in range(start_x,end_x+1):
         for j in range(start_y, end_y+1):
             temp_a[i][j] = average(i,j)
+
     # 2.2 temp_a 평균값들 a로 이동
     for i in range(start_x, end_x + 1):
         for j in range(start_y, end_y + 1):
