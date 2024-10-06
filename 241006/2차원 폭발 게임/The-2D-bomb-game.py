@@ -81,7 +81,7 @@ for i in range(n):
         if grid[i][j] != 0:
             ans += 1
 
-if n==1:
+if n==1 and m==1:
     print(0)
 else:
     print(ans)
