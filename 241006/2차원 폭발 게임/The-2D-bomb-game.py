@@ -143,13 +143,7 @@ def bomb():
                 cnt = 1
                 keep_num = grid[j][i]
     return did_explode
-    
-def grid_print():
-    for row in grid:
-        for elem in row:
-            print(elem, end=' ')
-        print()
-    print("-------")
+
 
 def simulate():
     while True:
@@ -172,5 +166,7 @@ for i in range(n):
         if grid[i][j] != 0:
             ans += 1
 
-print(ans)
-# grid_print()
+if n==1 and m==1:
+    print(0)
+else:
+    print(ans)
