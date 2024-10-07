@@ -25,6 +25,8 @@ escape = False
 while True:
     if escape:
         break
+    if time > n**2:
+        break
     nx, ny = x + dx[d], y + dy[d]
     # 1. 새로 가려는 곳이 격자 밖이라면
     if not in_range(nx, ny):
