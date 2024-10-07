@@ -17,6 +17,7 @@ while True:
             block_row = row - 1
             under_block = True
             break
+        block_row = row
     #   1.1. 블록 1로 색칠
     for col in range(k, k+m):
         grid[block_row][col] = 1
