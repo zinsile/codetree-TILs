@@ -46,20 +46,24 @@ while True:
                 # 이동
                 time += 1
                 x, y = nx, ny
+                grid[x][y] = 2
                 break
     if escape:
         break
     nd = (d + 1) % 4
+    nx2, ny2 = nx+dx[nd], ny+dy[nd]
     # 3. 새로 가려는 곳이 비어있고 새로 가려는곳 아래가 벽이라면:
-    if grid[nx][ny] == 0 and grid[nx + dx[nd]][ny] == 1:
+    if grid[nx][ny] == 0 and grid[nx2][ny2] == 1:
         # 3.1 새로 가려는 곳으로 전진
         time += 1
         x, y = nx , ny
+        grid[x][y] = 2
 
     # 4. 새로 가려는 곳이 비어있고 새로 가려는곳 아래가 길이라면:
-    if grid[nx][ny] == 0 and grid[nx + dx[nd]][ny] == 0:
+    if grid[nx][ny] == 0 and grid[nx2][ny2] == 0:
         # 4.1 한칸 앞으로(새로 가려는 곳) 시계방향 회전한 뒤 , 다시 한칸 앞으로
-        x, y = nx+dx[nd], ny+dy[nd]
+        x, y = nx2, ny2
+        grid[x][y] = 2
         time += 2
         d = nd
 
