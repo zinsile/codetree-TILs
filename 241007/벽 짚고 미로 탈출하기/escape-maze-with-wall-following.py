@@ -1,9 +1,10 @@
 n = int(input())
 start_x, start_y = map(int, input().split())
 grid = [list(map(str, input())) for _ in range(n)]
+visited = [[[False for _ in range(4)] for _ in range(n)] for _ in range(n)]
 
-x = start_x - 1
-y = start_y - 1
+curr_x = start_x - 1
+curr_y = start_y - 1
 
 for i in range(n):
     for j in range(n):
@@ -12,67 +13,49 @@ for i in range(n):
         else:
             grid[i][j] = 0
 
-
-def in_range(x, y):
-    return x >= 0 and x < n and y >= 0 and y < n
-
-
 dx, dy = [0, 1, 0, -1], [1, 0, -1, 0]
 
 d = 0
 time = 0
-escape = False
-while True:
-    if escape:
-        break
-    if time > n**2:
-        break
-    nx, ny = x + dx[d], y + dy[d]
-    # 1. 새로 가려는 곳이 격자 밖이라면
+
+def in_range(x, y):
+    return x >= 0 and x < n and y >= 0 and y < n
+
+def simulate():
+    global curr_x, curr_y, d, time
+    if visited[curr_x][curr_y][d]:
+        time = -1
+        curr_x, curr_y = -1, -1
+        return
+
+    visited[curr_x][curr_y][d] = True
+    nx, ny = curr_x + dx[d], curr_y + dy[d]
+    nd = (d+1) % 4
+    rx, ry = nx + dx[nd], ny + dy[nd]
+
+    # 1. 범위 밖일경우
     if not in_range(nx, ny):
-        escape = True
         time += 1
-        break
+        curr_x, curr_y, = nx, ny
+        return
 
-    # 2. 새로 가려는 곳이 벽이라면:
-    if grid[nx][ny] == 1:
-        for _ in range(2):
-            # 2.1 반시계 회전한 뒤 전진
-            d = (4 + d - 1) % 4
-            nx, ny = x + dx[d], y + dy[d]
-            if not in_range(nx, ny):
-                escape = True
-                time += 1
-                break
-            if grid[nx][ny] == 0:
-                # 이동
-                time += 1
-                x, y = nx, ny
-                grid[x][y] = 2
-                break
-    if escape:
-        break
-    nd = (d + 1) % 4
-    nx2, ny2 = nx+dx[nd], ny+dy[nd]
-    # 3. 새로 가려는 곳이 비어있고 새로 가려는곳 아래가 벽이라면:
-    if grid[nx][ny] == 0 and grid[nx2][ny2] == 1:
-        # 3.1 새로 가려는 곳으로 전진
-        time += 1
-        x, y = nx , ny
-        grid[x][y] = 2
+    # 2. 벽일경우
+    elif grid[nx][ny] == 1:\
+        d = (4+d-1) % 4
 
-    # 4. 새로 가려는 곳이 비어있고 새로 가려는곳 아래가 길이라면:
-    if grid[nx][ny] == 0 and grid[nx2][ny2] == 0:
-        # 4.1 한칸 앞으로(새로 가려는 곳) 시계방향 회전한 뒤 , 다시 한칸 앞으로
-        x, y = nx2, ny2
-        grid[x][y] = 2
-        time += 2
-        d = nd
+    # 3. 이동가능할 경우
+    else:
+        # 3.1. 오른 쪽 벽일경우
+        if grid[rx][ry] == 1:
+            time += 1
+            curr_x, curr_y = nx, ny
+        # 3.2. 오른 쪽 벽 아닐경우
+        else:
+            time += 2
+            curr_x, curr_y = rx, ry
+            d = nd
 
-    if x == start_x - 1 and y == start_y - 1:
-        break
+while in_range(curr_x, curr_y):
+    simulate()
 
-if escape:
-    print(time)
-else:
-    print(-1)
+print(time)
