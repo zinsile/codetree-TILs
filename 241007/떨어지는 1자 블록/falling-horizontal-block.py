@@ -22,7 +22,7 @@ while True:
     for col in range(k, k+m):
         grid[block_row][col] = 1
     #step2. 놓인 위치 행이 0이거나 if under_block이면 : break
-    if under_block or row == n-1 :
+    if under_block or block_row == n-1 :
         break
 
 
