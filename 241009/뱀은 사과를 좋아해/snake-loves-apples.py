@@ -31,9 +31,8 @@ def moving(new_head_x, new_head_y,d):
     # 빈공간인 경우
     else:
         tail_x, tail_y = snake.pop()
-        head_x,head_y = new_head_x, new_head_y
-        # tail_x, tail_y = snake.pop()
         snake.insert(0,(new_head_x, new_head_y))
+        head_x,head_y = new_head_x, new_head_y
         graph[tail_x][tail_y] = 0
         graph[head_x][head_y] = 1
 
@@ -56,7 +55,7 @@ for direc, p in infos:
             game_end = True
             break
         #몸이 꼬여 서로 겹칠경우 종료
-        if graph[new_head_x][new_head_y] == 1 and (new_head_x != tail_x and new_head_y != tail_y):
+        if graph[new_head_x][new_head_y] == 1 and (new_head_x != tail_x or new_head_y != tail_y):
             game_end = True
             break
         # 사과가 있거나 빈공간이면 뱀 이동
