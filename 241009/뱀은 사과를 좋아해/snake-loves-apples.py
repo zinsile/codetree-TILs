@@ -30,8 +30,8 @@ def moving(new_head_x, new_head_y,d):
         graph[head_x][head_y] = 1
     # 빈공간인 경우
     else:
-        tail_x, tail_y = snake.pop()
         snake.insert(0,(new_head_x, new_head_y))
+        tail_x, tail_y = snake.pop()
         head_x,head_y = new_head_x, new_head_y
         graph[tail_x][tail_y] = 0
         graph[head_x][head_y] = 1
