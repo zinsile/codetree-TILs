@@ -55,6 +55,8 @@ for direc, p in infos:
             game_end = True
             break
         #몸이 꼬여 서로 겹칠경우 종료
+        tail_x,tail_y = snake.pop()
+        snake.append((tail_x,tail_y))
         if graph[new_head_x][new_head_y] == 1 and (new_head_x != tail_x or new_head_y != tail_y):
             game_end = True
             break
