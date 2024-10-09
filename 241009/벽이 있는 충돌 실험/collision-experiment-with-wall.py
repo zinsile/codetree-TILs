@@ -54,15 +54,17 @@ def simulate():
             g_dirc[i][j] = d_temp[i][j]
             g_id[i][j] = id_temp[i][j]
 
-    #방문 기록 체크
-    for i in range(n):
-        for j in range(n):
-            # 방문한 곳이면 게임 종료
-            if g_exist[i][j] == 1 and visit[i][j][g_id[i][j]][g_dirc[i][j]]:
-                return False
-            # 방문 안했던 곳이면 방문기록 남기기
-            if g_exist[i][j] == 1 and not visit[i][j][g_id[i][j]][g_dirc[i][j]] :
-                visit[i][j][g_id[i][j]][g_dirc[i][j]] = True
+    # #방문 기록 체크
+    # for i in range(n):
+    #     for j in range(n):
+    #         # 방문한 곳이면 게임 종료
+    #         d = g_dirc[i][j]
+    #         id = g_id[i][j]
+    #         if g_exist[i][j] == 1 and id in visit[i][j][d]:
+    #             return False
+    #         # 방문 안했던 곳이면 방문기록 남기기
+    #         if not g_dirc[i][j] in visit[i][j][g_id[i][j]] and g_exist[i][j] == 1:
+    #             visit[i][j][g_id[i][j]]+=g_dirc[i][j]
     # print_graph(g_exist)
     return True
 
@@ -82,7 +84,7 @@ t = int(input())
 
 for _ in range(t):
     n, m = map(int, input().split())
-    visit = [[[[False] * 5 for _ in range(m+1)] for _ in range(n)] for _ in range(n)]  # 구슬 방문기록
+    # visit = [[[0 for _ in range(5)]for _ in range(n)] for _ in range(n)]  # 구슬 방문기록
     g_exist = [[0] * n for _ in range(n)]  # 구슬 존재 그래프 0:없음, 1:있음
     g_dirc = [[0] * n for _ in range(n)]  # 구슬 방향 정보 그래프 :  구슬 존재할때 움직일 방향 알기 위함
     temp = [[0] * n for _ in range(n)]  # 두개이상 충돌할때 알기 위한 그래프
@@ -94,9 +96,9 @@ for _ in range(t):
         g_exist[x - 1][y - 1] = 1
         g_dirc[x - 1][y - 1] = d
         g_id[x - 1][y - 1] = id
-        visit[x - 1][y - 1][id][d] = True
+        # visit[x - 1][y - 1][d].insert(-1,id)
     keepgoing = True
-    while True:
+    for _ in range(2*n):
         # id 구슬이 같은 방향으로 같은자리에 방문하면 무한루프이므로 케이스 종료
         if not keepgoing:  # not visit[x][y][id][d]
             break
