@@ -3,9 +3,9 @@ graph = [list(map(int, input().split())) for _ in range(n)]
 
 start_spots = []
 start_spots += [(0,y,0) for y in range(n)]
-start_spots += [(x,n-1,1) for x in range(n)]
+start_spots += [(x,n-1,3) for x in range(n)]
 start_spots += [(n-1,y,2) for y in range(n)]
-start_spots += [(x,0,3) for x in range(n)]
+start_spots += [(x,0,1) for x in range(n)]
 
 dx, dy = [1,0,-1,0], [0,1,0,-1]
 
@@ -14,6 +14,10 @@ def in_range(x,y):
 
 def moving(x,y,d):
     time = 1
+    if graph[x][y] == 1:
+        d = abs(3-d)
+    if graph[x][y] == 2:
+         d= d ^ 1
     while True:
         nx, ny = x+dx[d], y+dy[d]
         # 격자 밖 벗어날 경우
