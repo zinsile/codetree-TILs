@@ -14,7 +14,13 @@ for i, (x,y,h,w,k) in enumerate(person[1:], start=1):
     for dx in range(h):
         for dy in range(w):
             pos_arr[x+dx][y+dy] = i
-ans = 0
+
+def remove(idxx,pos_arr):
+    for x in range(1,L+1):
+        for y in range(1,L+1):
+            if pos_arr[x][y] == idxx:
+                pos_arr[x][y] = 0
+    return pos_arr 
 
 def moving(idx, d, pos_arr, arr):
     global person, dxs, dys
@@ -25,21 +31,21 @@ def moving(idx, d, pos_arr, arr):
     temp.append(idx)
 
     while q:
-        id = q.pop(0)
-        x,y,h,w,k = person[id]
+        idxx = q.pop(0)
+        x,y,h,w,k = person[idxx]
         for i in range(h):
             for j in range(w):
                 nx, ny = (x+i)+dxs[d], (y+j)+dys[d]
                 if arr[nx][ny] == 2:
                     flag = 1
                     return temp, flag
-                elif pos_arr[nx][ny] != id and pos_arr[nx][ny]>0 and not pos_arr[nx][ny] in temp:
+                elif pos_arr[nx][ny] != idxx and pos_arr[nx][ny]>0 and not pos_arr[nx][ny] in temp:
                     q.append(pos_arr[nx][ny])
                     temp.append(pos_arr[nx][ny])
     return temp, flag
-cnt=0
+
 for idx, d in unit:
-    cnt+=1
+
     if not live[idx]:
         continue
     moved_p, flag = moving(idx, d, pos_arr, arr)
@@ -63,10 +69,14 @@ for idx, d in unit:
             # 명령받은 기사 아니고 & 함정있다면 : 대미지 -= 1
             if pos_arr[x][y] != idx and arr[x][y] == 1:
                 damage[pos_arr[x][y]] -= 1
-                ans += 1
     # 체스판에서 사라질 기사 있는지 확인
-    for id, t in enumerate(damage[1:], start=1):
+    for idxx, t in enumerate(damage[1:], start=1):
         if t <= 0:
-            live[id] = False
+            live[idxx] = False
+            pos_arr = remove(idxx, pos_arr)
 
+ans = 0
+for t,(x,y,w,h,k) in enumerate(person[1:], start=1):
+    if live[t]:
+        ans += (k-damage[t])
 print(ans)
