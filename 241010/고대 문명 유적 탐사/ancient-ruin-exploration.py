@@ -38,11 +38,12 @@ def value_count(arr,flag):
     return result, arr
 
 def rotate(arr,x,y,rot):
-    narr = [x[:] for x in arr]
     for _ in range(rot):
+        narr = [x[:] for x in arr]
         for i in range(3):
             for j in range(3):
                 narr[x+i][y+j] = arr[x+3-j-1][y+i]
+        arr = narr
     return narr
 
 
