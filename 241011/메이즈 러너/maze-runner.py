@@ -17,10 +17,10 @@ def move_units():
 
         for dx, dy in [(-1,0),(1,0),(0,-1),(0,1)]:
             nx, ny = x+dx, y+dy
-            if not (0<=nx<N and 0<=ny<N):
+            if 0>nx or nx>=N or 0>ny or ny>=N:
                 continue
             ndis = abs(ex-nx)+abs(ey-ny)
-            if ndis < min_dis and arr[nx][ny] == 0:
+            if ndis < min_dis and arr[nx][ny]==0:
                 min_dis = ndis
                 min_x, min_y = nx, ny
         if min_x != x or min_y != y:
@@ -33,45 +33,68 @@ def move_units():
 
 def square():
     for t in range(2,N+1):
-        for i in range(N-1):
-            for j in range(N-1):
-                include = False
+        for i in range(N-(t-1)):
+            for j in range(N-(t-1)):
+                if not (i<=ex<i+t and j<=ey<j+t):
+                    continue
                 for idx in units:
                     x, y = units[idx]
-                    if i<=x<i+t and i<=ex<i+t and j<=y<j+t and j<=ey<j+t:
+                    if i<=x<i+t and j<=y<j+t:
                         return i, j, t
 
 def rotate(arr, ex, ey):
     narr = [x[:] for x in arr]
-    npos = [[0]*N for _ in range(N)]
-    nnpos = [[0]*N for _ in range(N)]
-    npos[ex][ey] = -1 # 탈출구는 -1
-    for idx in units:
-        x,y = units[idx]
-        npos[x][y] = idx # 사람은 번호로 1~M
-    rx,ry,rt = square()
+    sx,sy,square_size = square()
+    # 우선 정사각형 안에 있는 벽들을 1 감소시킵니다.
+    for x in range(sx, sx + square_size):
+        for y in range(sy, sy + square_size):
+            if arr[x][y]:
+                arr[x][y] -= 1
+    # 정사각형을 시계방향으로 90' 회전합니다.
+    for x in range(sx, sx + square_size):
+        for y in range(sy, sy + square_size):
+            # Step 1. (sx, sy)를 (0, 0)으로 옮겨주는 변환을 진행합니다.
+            ox, oy = x - sx, y - sy
+            # Step 2. 변환된 상태에서는 회전 이후의 좌표가 (x, y) . (y, square_n - x - 1)가 됩니다.
+            rx, ry = oy, square_size - ox - 1
+            # Step 3. 다시 (sx, sy)를 더해줍니다.
+            narr[rx + sx][ry + sy] = arr[x][y]
+    # next_board 값을 현재 board에 옮겨줍니다.
+    for x in range(sx, sx + square_size):
+        for y in range(sy, sy + square_size):
+            arr[x][y] = narr[x][y]
+    ##############################################
+    # m명의 참가자들을 모두 확인합니다.
+    for i in units:
+        tx, ty = units[i]
+        # 해당 참가자가 정사각형 안에 포함되어 있을 때에만 회전시킵니다.
+        if sx <= tx and tx < sx + square_size and sy <= ty and ty < sy + square_size:
+            # Step 1. (sx, sy)를 (0, 0)으로 옮겨주는 변환을 진행합니다.
+            ox, oy = tx - sx, ty - sy
+            # Step 2. 변환된 상태에서는 회전 이후의 좌표가 (x, y) . (y, square_n - x - 1)가 됩니다.
+            rx, ry = oy, square_size - ox - 1
+            # Step 3. 다시 (sx, sy)를 더해줍니다.
+            units[i] = [rx + sx, ry + sy]
 
-    for i in range(rt):
-        for j in range(rt):
-            narr[rx+i][ry+j] = arr[rx+rt-j-1][ry+i]
-            if narr[rx+i][ry+j] > 0:
-                narr[rx + i][ry + j] -= 1
-            nnpos[rx+i][ry+j] = npos[rx+rt-j-1][ry+i]
-            if nnpos[rx+i][ry+j] == -1:
-                ex,ey = rx+i, ry+j
-            if nnpos[rx+i][ry+j] > 0:
-                units[nnpos[rx+i][ry+j]] = [rx+i, ry+j]
-    return narr,ex,ey
+    # 출구에도 회전을 진행합니다.
+    if sx <= ex and ex < sx + square_size and sy <= ey and ey < sy + square_size:
+        # Step 1. (sx, sy)를 (0, 0)으로 옮겨주는 변환을 진행합니다.
+        ox, oy = ex - sx, ey - sy
+        # Step 2. 변환된 상태에서는 회전 이후의 좌표가 (x, y) . (y, square_n - x - 1)가 됩니다.
+        rx, ry = oy, square_size - ox - 1
+        # Step 3. 다시 (sx, sy)를 더해줍니다.
+        nex,ney = (rx + sx, ry + sy)
+    return narr,nex,ney
 
 ans = 0
 for _ in range(K):
-    if not units:
-        break
     cnt, remove = move_units()
     ans += cnt
     if remove:
         for idx in remove:
             units.pop(idx)
+    if not units:
+        break
     arr, ex, ey = rotate(arr, ex, ey)
 
 print(ans)
