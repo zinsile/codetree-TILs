@@ -1,1 +1,1 @@
-study for coding test
+Algorithm study
